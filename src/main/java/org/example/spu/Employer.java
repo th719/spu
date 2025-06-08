@@ -2,10 +2,12 @@ package org.example.spu;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,6 +30,7 @@ public class Employer {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Column(length=200, nullable=false, unique=false)
     private String name;
 
@@ -36,7 +39,9 @@ public class Employer {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "department")
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
 }
