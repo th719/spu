@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: spu
+  datasource:
+    name: mydatasource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/spu
+    username: postgres
+    password: gjcktpfdnhfdxthf
+    hikari:
+      connection-timeout: 2000
+      maximumPoolSize: 5
+  jpa:
+    show-sql: true
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+logging:
+  file:
+    path: /var/logs/
+    file: spu.log
+  level: 
+    root: WARN
+    org:
+      springframework:
+        security: DEBUG
+
+    
