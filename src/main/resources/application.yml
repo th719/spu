@@ -16,6 +16,7 @@ spring:
     rest:
       base-path: /data-api
   jackson:
+    # date-format: yyyy-MM-dd HH:mm:ss
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 

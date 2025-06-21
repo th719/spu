@@ -8,7 +8,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
@@ -32,16 +34,19 @@ public class Department {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "department_generator")
 	@SequenceGenerator(name = "department_generator", sequenceName = "department_id_seq", allocationSize = 1)
     private Long id;
-
 	
-    private String name;
+	@NotNull
+	private String name;
     
 	@Column(name = "parent_id")
     private Long parentId;
 
 	@OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Department> children = new ArrayList<>();
-    
+
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private Set<Employer> employers = new HashSet<>();
+
 	@Override
 	public String toString() {
 		return String.format(
