@@ -12,12 +12,16 @@ spring:
       maximumPoolSize: 5
   jpa:
     show-sql: true
+  data:
+    rest:
+      base-path: /data-api
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+
 logging:
   file:
-    path: /var/logs/
+    path: /var/log/
     file: spu.log
   level: 
     root: WARN

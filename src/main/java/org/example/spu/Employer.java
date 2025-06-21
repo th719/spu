@@ -31,8 +31,6 @@ import org.slf4j.LoggerFactory;
 @NoArgsConstructor(access=AccessLevel.PROTECTED, force=true)
 public class Employer {
     
-
-
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "employer_generator")
 	@SequenceGenerator(name = "employer_generator", sequenceName = "employer_id_seq", allocationSize = 1)
@@ -47,13 +45,7 @@ public class Employer {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    // @ManyToOne(cascade = CascadeType.ALL)
-    // @JoinTable(name = "department")
-    // @JoinColumn(name = "department_id", referencedColumnName = "id")
-    // private Department department;
-
-        // @ManyToOne(fetch = FetchType.LAZY)
-        @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 }
