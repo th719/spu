@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
-@RequestMapping(path="/api/spu/department", produces="application/json")
+@RequestMapping(path="/api/department", produces="application/json")
 // @CrossOrigin(origins="http://spu:8080") 
 // TODO
 public class DepartmentControllerRest {
@@ -34,11 +34,11 @@ public class DepartmentControllerRest {
         return departmentRepository.findAll();
     }
     
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Department> getById(@RequestParam Long id) { // ResponseEntity for return 404
-        Optional<Department> optTaco = departmentRepository.findById(id);
-        if (optTaco.isPresent()) {
-            return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
+    @GetMapping(path = "/{id}", produces="application/json")
+    public ResponseEntity<Department> getById(@PathVariable Long id) { // ResponseEntity for return 404
+        Optional<Department> opt = departmentRepository.findById(id);
+        if (opt.isPresent()) {
+            return new ResponseEntity<>(opt.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); 
     }

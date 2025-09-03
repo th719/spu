@@ -12,17 +12,19 @@ spring:
       maximumPoolSize: 5
   jpa:
     show-sql: true
+    # hibernate:
+      # ddl-auto: true
   data:
     rest:
       base-path: /data-api
   jackson:
-    # date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
 logging:
   file:
-    path: /var/log/
+    path: /var/log/spu
     file: spu.log
   level: 
     root: WARN

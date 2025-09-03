@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +48,9 @@ public class Department {
 	private List<Department> children = new ArrayList<>();
 
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private Set<Employer> employers = new HashSet<>();
+	@JsonManagedReference
+//	@JsonIgnore
+    private List<Employer> employers = new ArrayList<>();
 
 	@Override
 	public String toString() {
